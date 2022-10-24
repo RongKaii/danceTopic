@@ -57,4 +57,9 @@
         <url-pattern>/dance/*</url-pattern>
     </filter-mapping>
     
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INT/springmvc-servlet</param-value>
+    </context-param>
+    
 </web-app>
