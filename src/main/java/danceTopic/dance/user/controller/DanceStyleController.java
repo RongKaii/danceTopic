@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import danceTopic.dance.user.entity.User;
 import danceTopic.dance.user.service.DanceStyleService;import danceTopic.dance.user.service.UserService;
 
-@WebServlet("/adddancestyle")
+@WebServlet("/adddancestyle/")
 public class DanceStyleController extends HttpServlet{
 
 	private DanceStyleService danceStyleService = new DanceStyleService();
+	UserService userService = new UserService();
 	
 	
 	@Override
@@ -27,18 +29,70 @@ public class DanceStyleController extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 舞風
-		Integer userid = Integer.parseInt(req.getParameter("userid"));
-		Integer breaking = Integer.parseInt(req.getParameter("breaking"));
-		Integer popping = Integer.parseInt(req.getParameter("popping"));
-		Integer hiphop = Integer.parseInt(req.getParameter("hiphop"));
-		Integer locking = Integer.parseInt(req.getParameter("locking"));
-		Integer jazz = Integer.parseInt(req.getParameter("jazz"));
-		Integer Waacking = Integer.parseInt(req.getParameter("Waacking"));
-		Integer house = Integer.parseInt(req.getParameter("house"));
-		Integer dancehall = Integer.parseInt(req.getParameter("dancehall"));
-		Integer girlstyle = Integer.parseInt(req.getParameter("girlstyle"));
-		Integer krump = Integer.parseInt(req.getParameter("krump"));
+		
+		// 取得舞風資料
+		String useremail = (req.getParameter("useremail"));
+		Integer userid = userService.getid(useremail);
+		Integer breaking = 0;
+		if(req.getParameter("breaking") == null){
+			breaking = 0;
+		}else {
+			breaking = 1;
+		}
+		Integer popping = 0;
+		if(req.getParameter("popping") == null){
+			popping = 0;
+		}else {
+			popping = 1;
+		}		
+		Integer hiphop = 0;
+		if(req.getParameter("hiphop") == null){
+			hiphop = 0;
+		}else {
+			hiphop = 1;
+		}		
+		Integer locking = 0;
+		if(req.getParameter("locking") == null){
+			locking = 0;
+		}else {
+			locking = 1;
+		}		
+		Integer jazz = 0;
+		if(req.getParameter("jazz") == null){
+			jazz = 0;
+		}else {
+			jazz = 1;
+		}		
+		Integer Waacking = 0;
+		if(req.getParameter("Waacking") == null){
+			Waacking = 0;
+		}else {
+			Waacking = 1;
+		}		
+		Integer house = 0;
+		if(req.getParameter("house") == null){
+			house = 0;
+		}else {
+			house = 1;
+		}		
+		Integer dancehall = 0;
+		if(req.getParameter("dancehall") == null){
+			dancehall = 0;
+		}else {
+			dancehall = 1;
+		}		
+		Integer girlstyle = 0;
+		if(req.getParameter("girlstyle") == null){
+			girlstyle = 0;
+		}else {
+			girlstyle = 1;
+		}		
+		Integer krump = 0;
+		if(req.getParameter("krump") == null){
+			krump = 0;
+		}else {
+			krump = 1;
+		}		
 		
 		// 新增
 		try {
@@ -48,6 +102,8 @@ public class DanceStyleController extends HttpServlet{
 			resp.sendError(500, e.getMessage());
 			return;
 		}
+		
+		resp.sendRedirect("/" + "danceTopic" + "/");  // 重導到舞風頁面
 	}
 			
 }

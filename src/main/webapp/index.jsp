@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>首頁</title>
 </head>
 <body style='background-color: #282828';>
-	安安
+	此為danceTopic首頁
 </body>
 </html>

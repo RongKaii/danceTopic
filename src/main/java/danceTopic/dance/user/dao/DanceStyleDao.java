@@ -28,4 +28,15 @@ public class DanceStyleDao extends BaseDao{
 		}
 		return rowcount;
 	}
+	
+	// 根據userid刪除
+	public void delete(Integer userid) {
+		String sql = "delete from dancestyle where userid=?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, userid);
+			pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

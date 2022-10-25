@@ -12,14 +12,14 @@
 		<form class="pure-form" method="post" action="${ pageContext.request.contextPath }/adduser/">
 			<fieldset>
 				<legned>註冊</legned><p/>
-				姓名: <input style="width:225px;" type="text" value="${ requestScope.user.username }" id="username" name="username" placeholder="請輸入姓名"/><p/> 
-				舞者名: <input style="width:210px;" type="text" value="${ requestScope.user.dancername }" id="dancername" name="dancername" placeholder="請輸入舞者名"/><p/>
-				電子信箱: <input type="email" value="${ requestScope.user.useremail }" id="useremail" name="useremail" placeholder="請輸入電子信箱" requied="required" /><p/>
-				密碼: <input style="width:225px;" type="password" value="${ requestScope.user.password }" id="password" name="password" placeholder="請輸入密碼" requied="required" /><p/>
-				生日: <input style="width:225px;" type="date" name="birth" value="birth" required><p/>
-				性別: <input type="radio" name="sex" value="man">男&nbsp;&nbsp;<input type="radio" name="sex" value="woman">女<br>
+				姓名: <input style="width:225px;" type="text" value="${ requestScope.user.username }" id="username" name="username" placeholder="請輸入姓名" required="required"/><p/> 
+				舞者名: <input style="width:210px;" type="text" value="${ requestScope.user.dancername }" id="dancername" name="dancername" placeholder="請輸入舞者名" required="required"/><p/>
+				電子信箱: <input type="email" value="${ requestScope.user.useremail }" id="useremail" name="useremail" placeholder="請輸入電子信箱" required="required" /><p/>
+				密碼: <input style="width:225px;" type="password" value="${ requestScope.user.password }" id="password" name="password" placeholder="請輸入密碼" required="required" /><p/>
+				生日: <input style="width:225px;" type="date" name="birth" value="birth" required="required"><p/>
+				性別: <input type="radio" name="sex" value="man" required="required">男&nbsp;&nbsp;<input type="radio" name="sex" value="woman" required="required">女<br>
 				<p/>
-				居住縣/市: <select name="area" style="width:185px;">				
+				居住縣/市: <select name="area" style="width:185px;" required="required">				
 						<option value="">請選擇居住縣/市</option>
 						<option value="keelung">基隆</option>
 						<option value="newtaipei">新北</option>

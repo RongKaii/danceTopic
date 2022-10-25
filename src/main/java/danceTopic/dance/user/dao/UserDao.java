@@ -1,6 +1,10 @@
 package danceTopic.dance.user.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import com.mysql.cj.protocol.Resultset;
+import com.mysql.cj.xdevapi.Result;
 
 import danceTopic.dance.user.entity.User;
 
@@ -23,5 +27,33 @@ public class UserDao extends BaseDao{
 			e.printStackTrace();
 		}
 		return rowcount;
+	}
+	
+	// 用email 查詢 userid
+	public User getid(String useremail) {
+		User user = null;
+		String sql = "select userid from user where useremail=?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, useremail);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				user = new User();
+				user.setUserid(rs.getInt("userid"));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+	
+	// 根據email刪除
+	public void delete(String useremail) {
+		String sql = "delete from user where useremail=?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, useremail);
+			pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

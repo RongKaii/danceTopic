@@ -52,7 +52,7 @@ public class UserController extends HttpServlet{
 		}
 		
 		
-		resp.sendRedirect("/" + "danceTopic" + "/adddancestyle");  // 重導到首頁
+		resp.sendRedirect("/" + "danceTopic" + "/adddancestyle/");  // 重導到舞風頁面
 		
 		
 		
