@@ -32,4 +32,26 @@ public class DanceStyleService {
 		
 	}
 	
+	// 修改dancestyle
+	public void updateDanceStyle(Integer breaking, Integer popping, Integer hiphop,
+							 Integer locking, Integer jazz, Integer waacking, Integer house,
+							 Integer dancehall, Integer girlstyle, Integer krump, Integer userid) {
+		
+		DanceStyle danceStyle = new DanceStyle();
+		
+		danceStyle.setBreaking(breaking);
+		danceStyle.setPopping(popping);
+		danceStyle.setHippop(hiphop);
+		danceStyle.setLocking(locking);
+		danceStyle.setJazz(jazz);
+		danceStyle.setWaacking(waacking);
+		danceStyle.setHouse(house);
+		danceStyle.setDancehall(dancehall);
+		danceStyle.setGirlstyle(girlstyle);
+		danceStyle.setKrump(krump);
+		danceStyle.setUserid(userid);
+		
+		danceStyleDao.update(danceStyle);
+	}
+	
 }

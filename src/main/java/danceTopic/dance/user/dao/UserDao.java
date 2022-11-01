@@ -47,13 +47,78 @@ public class UserDao extends BaseDao{
 	}
 	
 	// 根據email刪除
-	public void delete(String useremail) {
-		String sql = "delete from user where useremail=?";
+	public void delete(Integer userid) {
+		String sql = "delete from user where userid=?";
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
-			pstmt.setString(1, useremail);
+			pstmt.setInt(1, userid);
 			pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	// 修改用戶資料(不含email,密碼)
+	public void updateUserInformation(User user) {
+		String sql = "update user set username=?, dancername=?, birth=?, sex=?, area=? where userid=?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, user.getUsername());
+			pstmt.setString(2, user.getDancername());
+			pstmt.setString(3, user.getBirth());
+			pstmt.setString(4, user.getSex());
+			pstmt.setString(5, user.getArea());
+			pstmt.setInt(6, user.getUserid());
+			pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 修改 email
+	public void updateEmail(Integer userid, String new_useremail) {
+		String sql = "update user set useremail=? where userid=?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, new_useremail);
+			pstmt.setInt(2, userid);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 修改 password
+	public void updatePassword(Integer userid, String new_password) {
+		String sql = "update user set password=? where userid=?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, new_password);
+			pstmt.setInt(2, userid);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 查詢單筆(根據useremail)
+	public User getUser(String useremail) {
+		User user = null;
+		String sql = "select userid, username, dancername, password, useremail, birth, sex, area, createtime from user where useremail=?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, useremail);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				user = new User();
+				user.setUserid(rs.getInt("userid"));
+				user.setUsername(rs.getString("username"));
+				user.setDancername(rs.getString("dancername"));
+				user.setPassword(rs.getString("password"));
+				user.setUseremail(rs.getString("useremail"));
+				user.setBirth(rs.getString("birth"));
+				user.setSex(rs.getString("sex"));
+				user.setArea(rs.getString("area"));
+				user.setCreatetime(rs.getTimestamp("createtime"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return user;
 	}
 }

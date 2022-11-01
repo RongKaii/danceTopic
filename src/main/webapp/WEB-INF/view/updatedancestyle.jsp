@@ -51,14 +51,12 @@ body {
 		<div id="main">
 			<body style="padding: 15px">
 				<form class="pure-form" method="post"
-					action="${ pageContext.request.contextPath }/adddancestyle/">
+					action="${ pageContext.request.contextPath }/updatedancestyle/">
 					<fieldset>
 
 						<h1>舞風選擇</h1>
 						<p />
-						<p>確認電子信箱:</p>
-						<input type="email" id="useremail" name="useremail"
-							placeholder="請再次輸入電子信箱" required="true" />
+						電子信箱: <input type="text" value="${ sessionScope.user.useremail }" id="useremail" name="useremail" readonly="readonly" /><p />
 						<p />
 						舞風:
 						<p />

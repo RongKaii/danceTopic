@@ -12,23 +12,25 @@ public class DanceStyleDaoTest {
 	
 	@Test
 	public void test() {
-//		DanceStyle danceStyle = new DanceStyle();
-//		danceStyle.setUserid(2);
-//		danceStyle.setBreaking(1);
-//		danceStyle.setPopping(0);
-//		danceStyle.setHippop(1);
-//		danceStyle.setLocking(0);
-//		danceStyle.setJazz(0);
-//		danceStyle.setWaacking(0);
-//		danceStyle.setHouse(1);
-//		danceStyle.setDancehall(0);
-//		danceStyle.setGirlstyle(0);
-//		danceStyle.setKrump(0);
+		DanceStyle danceStyle = new DanceStyle();
+		danceStyle.setUserid(37);
+		danceStyle.setBreaking(1);
+		danceStyle.setPopping(1);
+		danceStyle.setHippop(1);
+		danceStyle.setLocking(1);
+		danceStyle.setJazz(1);
+		danceStyle.setWaacking(1);
+		danceStyle.setHouse(1);
+		danceStyle.setDancehall(1);
+		danceStyle.setGirlstyle(1);
+		danceStyle.setKrump(1);
 //		
 //		DanceStyleDao danceStyleDao = new DanceStyleDao();
 //		danceStyleDao.addUserDanceStyle(danceStyle);
 		
-		danceStyleDao.delete(27);
+//		danceStyleDao.delete(27);
+		
+		danceStyleDao.update(danceStyle);
 	}
 	
 }

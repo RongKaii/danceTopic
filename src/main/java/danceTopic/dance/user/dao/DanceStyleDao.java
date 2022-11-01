@@ -39,4 +39,25 @@ public class DanceStyleDao extends BaseDao{
 			e.printStackTrace();
 		}
 	}
+	
+	// 根據userid修改
+	public void update(DanceStyle danceStyle) {
+		String sql = "update dancestyle set breaking=?, popping=?, hiphop=?, locking=?, jazz=?, waacking=?, house=?, dancehall=?, girlstyle=?, krump=? where userid=?";
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setInt(1, danceStyle.getBreaking());
+			pstmt.setInt(2, danceStyle.getPopping());
+			pstmt.setInt(3, danceStyle.getHippop());
+			pstmt.setInt(4, danceStyle.getLocking());
+			pstmt.setInt(5, danceStyle.getJazz());
+			pstmt.setInt(6, danceStyle.getWaacking());
+			pstmt.setInt(7, danceStyle.getHouse());
+			pstmt.setInt(8, danceStyle.getDancehall());
+			pstmt.setInt(9, danceStyle.getGirlstyle());
+			pstmt.setInt(10, danceStyle.getKrump());
+			pstmt.setInt(11, danceStyle.getUserid());
+			pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

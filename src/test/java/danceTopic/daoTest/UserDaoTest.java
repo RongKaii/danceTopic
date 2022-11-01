@@ -8,6 +8,7 @@ import danceTopic.dance.user.entity.User;
 public class UserDaoTest {
 
 	UserDao userDao = new UserDao();
+	User user = new User();
 	
 //	@Test
 //	public void test() {
@@ -33,7 +34,12 @@ public class UserDaoTest {
 	
 	@Test
 	public void test() {
-		userDao.delete("1@g");
+//		userDao.delete("1@g");
+//		
+
+		User user = new User();
+		System.out.println(user = userDao.getUser("2@g"));
+		
 	}
 
 

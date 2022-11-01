@@ -10,7 +10,7 @@ public class DanceStyleServiceTest {
 	public void test() throws Exception{
 		DanceStyleService danceStyleService = new DanceStyleService();
 		
-		danceStyleService.addDanceStyle(3, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0);
+		danceStyleService.updateDanceStyle(0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 37);
 	}
 	
 }

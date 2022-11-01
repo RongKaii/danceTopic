@@ -1,6 +1,5 @@
 package danceTopic.dance.user.controller;
 
-import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -9,51 +8,52 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.mysql.cj.protocol.x.ContinuousOutputStream;
-
-import danceTopic.dance.user.service.DanceStyleService;
+import danceTopic.dance.user.entity.User;
 import danceTopic.dance.user.service.UserService;
 
-@WebServlet("/adduser/")
-public class UserController extends HttpServlet{
-	
-	
+@WebServlet("/upadteuserin/")
+public class updateUserInformationController extends HttpServlet{
+
 	private UserService userService = new UserService();
 
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/useradd.jsp");
+		User user = new User();
+		
+		HttpSession session = req.getSession();
+		Object useremail = session.getAttribute(user.getUseremail());
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/updateUserInformation.jsp");
+		req.setAttribute("useremail", useremail);
 		rd.forward(req, resp);
+		
 	}
-
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		// 取得表單資料
+		// 取得資料
+		String useremail = req.getParameter("useremail");
 		String username = req.getParameter("username");
 		String dancername = req.getParameter("dancername");
-		String password = req.getParameter("password");
-		String useremail = req.getParameter("useremail");
 		String birth = req.getParameter("birth");
 		String sex = req.getParameter("sex");
 		String area = req.getParameter("area");
-		
-		// 新增
+
+		// 修改user資料
 		try {
-			userService.addUser(username, dancername, password, useremail, birth, sex, area);
+			userService.updateUserInformation(username, dancername, birth, sex, area, useremail);
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.sendError(500, e.getMessage());
 			return;
 		}
-		resp.sendRedirect("/" + "danceTopic" + "/adddancestyle/");  // 重導到舞風頁面
-		
-		
-		
-		
+		resp.sendRedirect("/" + "danceTopic" + "/");  // 重導到首頁
 	}
+	
+	
+	
+	
+	
 }
